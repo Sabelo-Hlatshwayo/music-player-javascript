@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  <div class="background-image">ZERO</div>
   <div class="container">
     <nav class="side-tracklist">
       <ul class="side-tracklist__list">
@@ -123,7 +124,22 @@
         </li>
       </ul>
     </nav>
-    <div class="music">MUSIC</div>
+    <div class="music-container">
+      <div class="music-player">
+        <img src="./images/adele-21.jpg" alt="" class="music-player__image">
+        <h1 class="music-player__title">turning tables</h1>
+        <span class="music-player__name">Adele</span>
+
+        <audio src="./music/Turning Tables.mp3" controls></audio>
+
+        <div class="music-player__progress">
+          <div class="music-player__progress-indicator"></div>
+          <div class="music-player__previous"></div>
+          <div class="music-player__play"></div>
+          <div class="music-player__next"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <script src="./app.js"></script>
 </body>
