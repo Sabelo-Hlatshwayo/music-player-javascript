@@ -113,7 +113,6 @@ img {
 
 /******************************************************/
 .music-container {
-    border: solid red;
     position: relative;
 }
 
@@ -137,21 +136,20 @@ img {
     animation: rotation 3s linear infinite;
 }
 
-.music-player__title,
-.music-player__name {
+.music-player__song,
+.music-player__artist {
     color: #fff;
     text-transform: capitalize;
 }
 
-.music-player__title {
+.music-player__song {
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 0.075rem;
     margin-bottom: 2.4rem;
 }
 
-.music-player__name {
-    /* border: solid red; */
+.music-player__artist {
     display: block;
     font-size: 1.8rem;
     font-weight: 500;
@@ -167,34 +165,59 @@ audio {
     background-color: red;
     border-radius: 12.8rem;
     cursor: pointer;
+    margin-bottom: 3.2rem;
 }
 
 .music-player__progress-indicator {
     height: inherit;
     width: 10%;
     background-color: yellow;
-    margin-bottom: 2.4rem;
 }
 
-.music-player__previous {
-    display: inline-block;
-    background-color: red;
-    padding: 20px;
-    margin-right: 10px;
+.music-player__controllers {
+    display: flex;
+    justify-content: center;
+    gap: 4.8rem;
 }
 
-.music-player__play {
+.music-player__btn {
     display: inline-block;
-    background-color: yellow;
-    padding: 20px;
-    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
 }
 
-.music-player__next {
-    display: inline-block;
-    background-color: blue;
-    padding: 20px;
-    margin-right: 10px;
+.music-player__controllers .music-player__btn:nth-child(2) {
+    padding: 0.8rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-content: flex-end;
+    background: linear-gradient(
+        135deg,
+        rgba(230, 233, 240, 0.772549),
+        rgba(238, 241, 245, 0.772549)
+    );
+}
+
+.music-player__icon {
+    height: 3.2rem;
+    width: 3.2rem;
+}
+
+.music-player__icon.music-player__icon--play,
+.music-player__icon.music-player__icon--pause {
+    fill: #fafafa;
+    border-radius: 50%;
+}
+
+.music-player__btn.music-player__play--pause {
+    /* border: solid red; */
+}
+
+.music-player__btn.music-player__play--play {
+    /* border: solid blue; */
 }
 
 @keyframes rotation {
