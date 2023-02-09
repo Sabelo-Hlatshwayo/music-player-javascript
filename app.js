@@ -37,6 +37,7 @@ const next = document.querySelector(".music-player__next");
 const mainSong = document.querySelector(".music-player__song");
 const mainArtist = document.querySelector(".music-player__artist");
 const audio = document.querySelector("audio");
+const backgroundImage = document.querySelector(".background-image");
 
 /* This variable represents the song that will be loaded onto the music player when the app loads,
    and it is also used to keep track of the current song that is currently loaded onto the music player
@@ -58,6 +59,7 @@ function loadSong() {
     mainImage.src = songsList[currentSongIndex].coverImage;
     mainSong.innerText = songsList[currentSongIndex].song;
     mainArtist.innerText = songsList[currentSongIndex].artist;
+    backgroundImage.style.backgroundImage = `url(${mainImage.src})`;
 }
 
 // This function plays the song
