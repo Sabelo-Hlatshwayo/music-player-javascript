@@ -38,8 +38,9 @@ const mainSong = document.querySelector(".music-player__song");
 const mainArtist = document.querySelector(".music-player__artist");
 const audio = document.querySelector("audio");
 
-// This variable represents the song that will be loaded onto the player when the app loads
-// This variable is also used to keep track of the current song that is currently loaded onto the player
+/* This variable represents the song that will be loaded onto the music player when the app loads,
+   and it is also used to keep track of the current song that is currently loaded onto the music player
+*/
 let currentSongIndex = randomNumberGenerator(0, songsList.length - 1);
 
 // Helper functions and event handlers
@@ -51,41 +52,13 @@ function randomNumberGenerator(lowerBound, upperBound) {
     );
 }
 
-next.addEventListener("click", () => {
-    if (currentSongIndex === songsList.length - 1) {
-        currentSongIndex = 0;
-        audio.src = songsList[currentSongIndex].url;
-        mainImage.src = songsList[currentSongIndex].coverImage;
-        mainSong.innerText = songsList[currentSongIndex].song;
-        mainArtist.innerText = songsList[currentSongIndex].artist;
-    } else {
-        currentSongIndex++;
-        audio.src = songsList[currentSongIndex].url;
-        mainImage.src = songsList[currentSongIndex].coverImage;
-        mainSong.innerText = songsList[currentSongIndex].song;
-        mainArtist.innerText = songsList[currentSongIndex].artist;
-    }
-
-    playSong();
-});
-
-previous.addEventListener("click", () => {
-    if (currentSongIndex === 0) {
-        currentSongIndex = songsList.length - 1;
-        audio.src = songsList[currentSongIndex].url;
-        mainImage.src = songsList[currentSongIndex].coverImage;
-        mainSong.innerText = songsList[currentSongIndex].song;
-        mainArtist.innerText = songsList[currentSongIndex].artist;
-    } else {
-        currentSongIndex--;
-        audio.src = songsList[currentSongIndex].url;
-        mainImage.src = songsList[currentSongIndex].coverImage;
-        mainSong.innerText = songsList[currentSongIndex].song;
-        mainArtist.innerText = songsList[currentSongIndex].artist;
-    }
-
-    playSong();
-});
+// This function loads the song onto the music player
+function loadSong() {
+    audio.src = songsList[currentSongIndex].url;
+    mainImage.src = songsList[currentSongIndex].coverImage;
+    mainSong.innerText = songsList[currentSongIndex].song;
+    mainArtist.innerText = songsList[currentSongIndex].artist;
+}
 
 // This function plays the song
 function playSong() {
@@ -114,15 +87,41 @@ function pauseSong() {
 }
 
 // Event listeners
+
+// Load a random song onto the music player when the app has loaded
+window.addEventListener("load", () => {
+    play.insertAdjacentHTML("afterbegin", playIcon);
+    loadSong();
+});
+
+// Play or pause the song
 play.addEventListener("click", () => {
     const isPlaying = play.classList.contains("music-player__play--play");
     isPlaying ? pauseSong() : playSong();
 });
 
-window.addEventListener("load", () => {
-    play.insertAdjacentHTML("afterbegin", playIcon);
-    audio.src = songsList[currentSongIndex].url;
-    mainImage.src = songsList[currentSongIndex].coverImage;
-    mainSong.innerText = songsList[currentSongIndex].song;
-    mainArtist.innerText = songsList[currentSongIndex].artist;
+// Load and play the next song
+next.addEventListener("click", () => {
+    if (currentSongIndex === songsList.length - 1) {
+        currentSongIndex = 0;
+        loadSong();
+    } else {
+        currentSongIndex++;
+        loadSong();
+    }
+
+    playSong();
+});
+
+// Load and play the previous song
+previous.addEventListener("click", () => {
+    if (currentSongIndex === 0) {
+        currentSongIndex = songsList.length - 1;
+        loadSong();
+    } else {
+        currentSongIndex--;
+        loadSong();
+    }
+
+    playSong();
 });
