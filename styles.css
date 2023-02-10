@@ -26,13 +26,13 @@ img {
 
 .background-image {
     height: 100vh;
-    /* background-image: url(./images/kendrick-lamar-damn.jpg); */
     background-repeat: no-repeat;
     background-size: cover;
     position: fixed;
     left: 0;
     right: 0;
     z-index: -10;
+    /* filter: blur(1000px); */
 }
 
 .container {
@@ -153,6 +153,7 @@ img {
     display: block;
     font-size: 1.8rem;
     font-weight: 500;
+    margin-bottom: 2.4rem;
 }
 
 audio {
@@ -160,18 +161,21 @@ audio {
 }
 
 .music-player__progress {
-    height: 0.8rem;
+    height: 1rem;
     width: 100%;
     background-color: red;
-    border-radius: 12.8rem;
+    border-radius: 50rem;
     cursor: pointer;
+    overflow: hidden;
     margin-bottom: 3.2rem;
 }
 
 .music-player__progress-indicator {
     height: inherit;
-    width: 10%;
+    width: 0;
     background-color: yellow;
+    border-radius: inherit;
+    transition: all 0.2s linear;
 }
 
 .music-player__controllers {

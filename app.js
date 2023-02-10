@@ -38,6 +38,10 @@ const mainSong = document.querySelector(".music-player__song");
 const mainArtist = document.querySelector(".music-player__artist");
 const audio = document.querySelector("audio");
 const backgroundImage = document.querySelector(".background-image");
+const progress = document.querySelector(".music-player__progress");
+const progressIndicator = document.querySelector(
+    ".music-player__progress-indicator"
+);
 
 /* This variable represents the song that will be loaded onto the music player when the app loads,
    and it is also used to keep track of the current song that is currently loaded onto the music player
@@ -127,3 +131,35 @@ previous.addEventListener("click", () => {
 
     playSong();
 });
+
+/* Functionality for updating the progression of the progress bar as the current playback
+   position of the audio media changes
+*/
+audio.addEventListener("timeupdate", (e) => {
+    const { duration, currentTime } = e.target;
+    const progressPercentage = (currentTime / duration) * 100;
+    progressIndicator.style.width = `${progressPercentage}%`;
+});
+
+progress.addEventListener("click", (e) => {
+    const { width: progressWidth } = progress.getBoundingClientRect();
+    const { offsetX: clickedWidth } = e;
+    const clickedPercentage = (clickedWidth / progressWidth) * 100;
+    progressIndicator.style.width = `${clickedPercentage}%`;
+    audio.currentTime = (audio.duration * clickedPercentage) / 100;
+});
+
+audio.addEventListener("ended", nextSong);
+
+// This function plays the next song
+function nextSong() {
+    if (currentSongIndex === songsList.length - 1) {
+        currentSongIndex = 0;
+        loadSong();
+    } else {
+        currentSongIndex++;
+        loadSong();
+    }
+
+    playSong();
+}
