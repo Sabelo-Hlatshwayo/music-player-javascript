@@ -32,7 +32,7 @@ img {
     left: 0;
     right: 0;
     z-index: -10;
-    /* filter: blur(1000px); */
+    filter: blur(0.1rem);
 }
 
 .container {
@@ -163,7 +163,7 @@ audio {
 .music-player__progress {
     height: 1rem;
     width: 100%;
-    background-color: red;
+    background-color: hsla(0, 0%, 46.7%, 0.270588);
     border-radius: 50rem;
     cursor: pointer;
     overflow: hidden;
@@ -173,7 +173,11 @@ audio {
 .music-player__progress-indicator {
     height: inherit;
     width: 0;
-    background-color: yellow;
+    background-image: linear-gradient(
+        135deg,
+        rgb(107, 112, 255) 0%,
+        rgb(248, 173, 255) 100%
+    );
     border-radius: inherit;
     transition: all 0.2s linear;
 }
