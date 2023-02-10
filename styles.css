@@ -220,6 +220,11 @@ audio {
     border-radius: 50%;
 }
 
+.music-player__previous svg,
+.music-player__next svg {
+    fill: url(#linear-gradient) #fafafa;
+}
+
 .music-player__btn.music-player__play--pause {
     /* border: solid red; */
 }
